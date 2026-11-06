@@ -1,0 +1,652 @@
+/* ─────────────────────────────────────────────────────────────
+   CSync case study page. Portfolio styles for the story;
+   CSync's own violet (#6041E8) only on its stages.
+   ───────────────────────────────────────────────────────────── */
+.cy-logo {
+  display: block;
+  width: 119px;
+  height: auto;
+}
+
+/* ── Hero stage: the animated CS Calendar on flat CSync violet ── */
+.cy-hero__visual {
+  align-self: center;
+}
+
+.cy-cover__note {
+  max-width: 70ch;
+  margin-top: 12px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
+/* ── 01 · Overview ─────────────────────────────────────────── */
+.cy-overview__facts {
+  margin-top: 16px;
+}
+
+.cy-overview__facts .cs-stat__src a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+/* ── 02 · Key modules: shipped screens with numbered notes ── */
+.cy-module {
+  display: grid;
+  gap: 20px;
+}
+
+.cy-module + .cy-module {
+  margin-top: 64px;
+}
+
+.cy-module__head {
+  display: grid;
+  gap: 6px;
+  max-width: 62ch;
+}
+
+.cy-module__name {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cy-annotated {
+  display: grid;
+  gap: 18px;
+}
+
+/* Markers live inside the scaled screen; dividing by --s (the screen's scale)
+   keeps them 24px on screen at every width */
+.cy-mark {
+  --m: calc(24px / var(--s, 0.65));
+  position: absolute;
+  z-index: 12;
+  display: grid;
+  place-items: center;
+  width: var(--m);
+  height: var(--m);
+  margin: calc(var(--m) / -2) 0 0 calc(var(--m) / -2);
+  border-radius: 50%;
+  background: #0f0f12;
+  color: #fff;
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  font-size: calc(12px / var(--s, 0.65));
+  font-weight: 700;
+  line-height: 1;
+  box-shadow:
+    0 0 0 calc(2.5px / var(--s, 0.65)) #fff,
+    0 calc(5px / var(--s, 0.65)) calc(12px / var(--s, 0.65)) rgba(15, 15, 18, 0.28);
+  transition:
+    transform 0.2s var(--ease-out),
+    background 0.2s ease;
+}
+
+.cy-mark.is-active {
+  background: var(--electric);
+  transform: scale(1.2);
+}
+
+.cy-notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cy-notes li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-2);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  transition: box-shadow 0.2s ease;
+}
+
+.cy-notes li.is-active {
+  box-shadow:
+    0 0 0 2px var(--electric),
+    var(--shadow-2);
+}
+
+.cy-notes__n {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0f0f12;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cy-notes li.is-active .cy-notes__n {
+  background: var(--electric);
+}
+
+.cy-notes b {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* The principle behind a choice: a small tinted block under each note */
+.cy-law {
+  display: grid;
+  gap: 2px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f3f1fe;
+}
+
+.cy-law .cs-mini {
+  color: #6a5bd0;
+}
+
+.cy-law strong {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #3d2bb5;
+}
+
+.cy-law > span:last-child {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/* How I worked: four steps before the modules */
+.cy-process {
+  margin-bottom: 56px;
+}
+
+.cy-process ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cy-process li {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 18px;
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-2);
+}
+
+.cy-process__n {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-2);
+}
+
+.cy-process b {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cy-process li > span:last-child {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+@media (max-width: 999px) {
+  .cy-process ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 799px) {
+  .cy-notes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cy-module__name {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 499px) {
+  .cy-process ol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── 03 · Brand ────────────────────────────────────────────── */
+.cy-logo-tiles {
+  grid-template-columns: 1.6fr 1fr;
+}
+
+.cy-brand-logo {
+  width: 200px;
+  height: auto;
+}
+
+.cy-brand-submark {
+  width: 58px;
+  height: auto;
+}
+
+.cy-swatches {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cy-type__aa {
+  color: #6041e8;
+}
+
+@media (max-width: 799px) {
+  .cy-logo-tiles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cy-swatches {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── Product demo: a featured player right after the hero ── */
+.cy-demo {
+  margin-top: 28px;
+}
+
+.cy-demo__band {
+  display: grid;
+  gap: 28px;
+  padding: 48px;
+  border-radius: 28px;
+  background: #1d1638;
+  color: #fff;
+}
+
+.cy-demo__head {
+  display: grid;
+  gap: 10px;
+  max-width: 660px;
+}
+
+.cy-demo__head .cs-mini {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.cy-demo__title {
+  margin: 0;
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.cy-demo__sub {
+  max-width: 56ch;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.cy-demo__screen {
+  width: 86%;
+}
+
+/* ── Video player (demo + launch): poster until play, then YouTube in place ── */
+.cy-player {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  container-type: inline-size;
+  border-radius: 18px;
+  background: #efecfd;
+}
+
+.cy-player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.cy-player__poster {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.cy-player__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border: 0;
+  background: rgba(20, 14, 48, 0.34);
+  color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.cy-player__play:hover {
+  background: rgba(20, 14, 48, 0.24);
+}
+
+.cy-player__play:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -8px;
+}
+
+.cy-player__disc {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #fff;
+  color: #6041e8;
+  box-shadow: 0 18px 40px rgba(20, 14, 48, 0.35);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.cy-player__disc svg {
+  margin-left: 4px;
+}
+
+.cy-player__play:hover .cy-player__disc {
+  transform: scale(1.06);
+}
+
+.cy-player__chip {
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(15, 10, 35, 0.72);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cy-player__chip span {
+  margin-left: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.cy-demo__note {
+  max-width: 70ch;
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 699px) {
+  .cy-demo__band {
+    gap: 20px;
+    padding: 24px 16px 20px;
+    border-radius: 22px;
+  }
+
+  .cy-player {
+    border-radius: 14px;
+  }
+
+  .cy-player__disc {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cy-player__disc svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .cy-player__chip {
+    font-size: 12px;
+  }
+}
+
+/* ── 05 · Reflection ───────────────────────────────────────── */
+.cy-reflection {
+  display: grid;
+  gap: 32px;
+}
+
+.cy-reflection__opening {
+  max-width: 34ch;
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.cy-reflection__learned {
+  display: grid;
+  gap: 12px;
+}
+
+.cy-reflection__learned ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cy-reflection__learned li {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 20px;
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.cy-reflection__learned li span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: #6041e8;
+}
+
+.cy-reflection__closing {
+  margin: 0;
+  padding: 28px 32px;
+  border-radius: 22px;
+  background: #1d1638;
+  color: #fff;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 999px) {
+  .cy-reflection__learned ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 499px) {
+  .cy-reflection__learned ol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cy-reflection__closing {
+    padding: 22px 20px;
+  }
+}
+
+/* ── 04 · Marketing: launch carousel, launch video, pricing page ── */
+.cy-carousel {
+  display: grid;
+  gap: 20px;
+  padding: 26px;
+}
+
+.cy-carousel__head {
+  display: grid;
+  gap: 6px;
+  max-width: 62ch;
+}
+
+/* The five posts read as one strip; on narrow screens it scrolls sideways */
+.cy-carousel__scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.cy-carousel__strip {
+  min-width: 760px;
+}
+
+.cy-carousel__strip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.cy-carousel__arc {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cy-carousel__arc li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 0 14px;
+  border-left: 2px solid #e4dffb;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.cy-carousel__arc span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted-2);
+}
+
+.cy-media {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 32px;
+  align-items: center;
+  margin-top: 16px;
+  padding: 20px 28px 20px 20px;
+}
+
+.cy-media__text {
+  display: grid;
+  gap: 8px;
+}
+
+.cy-media__img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+/* Launch video poster: the video's own opening lines */
+.cy-player--launch {
+  background: #fff;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.cy-launch-poster {
+  position: absolute;
+  inset: 0 0 34% 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 1.6cqw;
+  color: #16181d;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 4.4cqw;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.cy-launch-poster p {
+  margin: 0;
+}
+
+.cy-launch-poster p:last-child {
+  color: #6041e8;
+  font-weight: 600;
+}
+
+.cy-player--launch .cy-player__play {
+  justify-content: flex-end;
+  padding-bottom: 7%;
+  background: rgba(20, 14, 48, 0.04);
+}
+
+.cy-player--launch .cy-player__play:hover {
+  background: rgba(20, 14, 48, 0.08);
+}
+
+.cy-player--launch .cy-player__disc {
+  width: 64px;
+  height: 64px;
+  background: #6041e8;
+  color: #fff;
+  box-shadow: 0 14px 30px rgba(96, 65, 232, 0.35);
+}
+
+.cy-player--launch .cy-player__disc svg {
+  width: 24px;
+  height: 24px;
+}
+
+.cy-player--launch .cy-player__chip {
+  display: none;
+}
+
+@media (max-width: 799px) {
+  .cy-carousel {
+    padding: 22px 16px;
+  }
+
+  .cy-media {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 16px 16px 22px;
+  }
+}

@@ -1,0 +1,494 @@
+/* ─────────────────────────────────────────────────────────────
+   Animated project covers: the real product, playing on the taped
+   paper. Sized with container units of the paper (.preview__sketch).
+   Each product brings its own stage colour; motion, layering and
+   floating cards are shared so the four folders feel like one set.
+   ───────────────────────────────────────────────────────────── */
+.cover {
+  background: var(--cover-bg, #fff);
+}
+
+.cover__disc {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 74cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--cover-disc, transparent);
+  transform: translate(-50%, -50%);
+}
+
+/* A device on the stage: floats gently; the active one lifts */
+.cover__phone {
+  position: absolute;
+  transition:
+    translate 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.6s ease;
+  animation: cover-bob 6s ease-in-out infinite;
+}
+
+.cover__phone > .phone {
+  width: 100%;
+}
+
+@keyframes cover-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.1cqw);
+  }
+}
+
+/* Small role label under a device */
+.cover__who {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 3;
+  padding: 0.55cqw 1.5cqw;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16, 32, 48, 0.08), 0 6px 14px rgba(16, 32, 48, 0.12);
+  color: #16202b;
+  font-family: var(--font-mono);
+  font-size: max(9px, 1.75cqw);
+  line-height: 1.4;
+  white-space: nowrap;
+  transform: translate(-50%, 45%);
+}
+
+/* Screens inside a device: the new one settles in over the old one */
+.cover__flow {
+  position: relative;
+  width: 390px;
+  height: 844px;
+}
+
+.cover__layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition:
+    opacity 0.32s ease,
+    transform 0.52s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* How a screen arrives, like the real app: pushed in from the right, risen like a sheet, or faded */
+.cover__layer--push {
+  transform: translateX(100%);
+  transition:
+    opacity 0s,
+    transform 0.52s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cover__layer--rise {
+  transform: translateY(100%);
+  transition:
+    opacity 0s,
+    transform 0.56s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cover__layer.is-on {
+  z-index: 2;
+  opacity: 1;
+  transform: none;
+}
+
+.cover__layer.is-prev {
+  z-index: 1;
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* A tap: where the finger lands (390 × 844 screen space, so it scales with the phone) */
+.cover__tap {
+  position: absolute;
+  z-index: 5;
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  border: 4px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  background: rgba(16, 32, 48, 0.24);
+  animation: cover-tap 0.45s ease-out both;
+  pointer-events: none;
+}
+
+@keyframes cover-tap {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  35% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.25);
+  }
+}
+
+/* A real UI card lifted off the screen, overlapping the paper edge */
+.cover__float {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 10px 10px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16, 32, 48, 0.06), 0 18px 36px rgba(16, 32, 48, 0.18);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(10px) scale(0.92);
+  transition:
+    opacity 0.3s ease,
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.cover__float.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+.cover__float b,
+.cover__float small {
+  display: block;
+}
+
+/* ── Team Forge: cyan, two phones (Neha reviews, Riya gets recognised) ── */
+.cover--tf {
+  --cover-bg: #eaf6fd;
+  --cover-disc: #d3ecfa;
+}
+
+.cover--tf .cover__phone--front {
+  left: 45cqw;
+  top: 4.5cqw;
+  z-index: 2;
+  width: 31cqw;
+}
+
+.cover--tf .cover__phone--back {
+  left: 21cqw;
+  top: 12cqw;
+  z-index: 1;
+  width: 26cqw;
+  rotate: -5deg;
+  filter: saturate(0.92) brightness(0.98);
+  animation-delay: -3s;
+}
+
+.cover--tf .cover__phone--back.is-active {
+  z-index: 3;
+  scale: 1.05;
+  translate: 0 -1.6cqw;
+  filter: none;
+}
+
+.cover__float--tf {
+  left: -4%;
+  bottom: 13%;
+  color: var(--tf-ink);
+  font-family: var(--tf-body);
+}
+
+.cover__float--tf b {
+  font-family: var(--tf-heading);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.cover__float--tf small {
+  font-size: 12.5px;
+  color: var(--tf-muted);
+}
+
+.cover__xp {
+  font-family: var(--tf-heading);
+  font-weight: 800;
+  color: var(--tf-primary);
+}
+
+/* ── CSync: violet, the shipped CS Calendar in a browser window ── */
+.cover--cy {
+  --cover-bg: #efecfd;
+}
+
+.cover--cy .cy-cover {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  border-radius: 0;
+}
+
+.cover--cy .cy-cover__win {
+  animation: cover-drift 6s ease-in-out infinite;
+}
+
+@keyframes cover-drift {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -0.8cqw;
+  }
+}
+
+/* The company owns CSync's designs: a quiet line on the stage */
+.cover__own {
+  position: absolute;
+  left: 50%;
+  bottom: 2.6%;
+  z-index: 3;
+  margin: 0;
+  padding: 0.35cqw 1.4cqw;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  color: rgba(46, 32, 120, 0.72);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: max(9px, 1.55cqw);
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  transform: translateX(-50%);
+}
+
+/* The real Deadlines card, lifted out of the panel */
+.cover__float--cy {
+  right: -8%;
+  bottom: 7%;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  scale: 0.8;
+  transform-origin: right bottom;
+}
+
+.cover__float--cy,
+.cover__float--cy * {
+  box-sizing: border-box;
+}
+
+.cover__float--cy .cx-due {
+  width: 232px;
+  white-space: normal;
+  box-shadow: 0 1px 2px rgba(30, 20, 80, 0.08), 0 18px 36px rgba(40, 24, 120, 0.24);
+}
+
+/* ── Cognify: indigo on lavender, one phone (one small thing at a time) ── */
+.cover--cg {
+  --cover-bg: #eef0ff;
+  --cover-disc: #dfe2ff;
+}
+
+.cover--cg .cover__phone--solo {
+  left: 34.5cqw;
+  top: 4.5cqw;
+  width: 31cqw;
+  z-index: 2;
+}
+
+/* The win, celebrated the same way as the case-study hero */
+.cover--cg .cover__layer[data-id='win'].is-on .cg-win__cogni {
+  animation: cover-cg-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+.cover--cg .cover__layer[data-id='win'].is-on .cg-win__wins .cg-slot:nth-child(2) {
+  animation: cover-cg-fill 0.4s ease 0.6s both;
+}
+
+.cover--cg .cover__layer[data-id='win'].is-on .cg-win__wins .cg-slot:nth-child(2) svg {
+  animation: cover-cg-tick 0.3s ease 0.85s both;
+}
+
+@keyframes cover-cg-pop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 18px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@keyframes cover-cg-fill {
+  from {
+    border-color: #5a62e8;
+    background: #fff;
+  }
+  to {
+    border-color: #111;
+    background: #dfb34b;
+  }
+}
+
+@keyframes cover-cg-tick {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* The real streak chip from Today's header, lifted off the paper */
+.cover__float--cg {
+  left: -5%;
+  top: 34%;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.cover__float--cg .cg-streak {
+  margin: 0;
+  color: #111111;
+  box-shadow: 0 1px 2px rgba(17, 17, 40, 0.06), 0 16px 32px rgba(61, 68, 199, 0.22);
+}
+
+/* ── Coming soon (Mother First): plain paper, two facts, a quiet label ── */
+.cover--soon {
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+.cover__soon {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 4.6cqw;
+  height: 100%;
+  padding: 6cqw 9cqw;
+}
+
+.cover__soon-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.3cqw;
+  margin: 0;
+  padding: 0.9cqw 2cqw 0.9cqw 1.6cqw;
+  border: 1px solid rgba(15, 15, 18, 0.12);
+  border-radius: 999px;
+  background: #fafaf8;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: max(10px, 1.8cqw);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cover__soon-dot {
+  width: max(6px, 1.2cqw);
+  height: max(6px, 1.2cqw);
+  border-radius: 50%;
+  background: var(--electric, #1f44ff);
+  animation: cover-soon-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes cover-soon-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.cover__soon-facts {
+  display: grid;
+  gap: 3.4cqw;
+  margin: 0;
+}
+
+.cover__soon-facts dt {
+  margin-bottom: 0.8cqw;
+  color: var(--muted-2);
+  font-family: var(--font-mono);
+  font-size: max(10px, 1.7cqw);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cover__soon-facts dd {
+  max-width: 22ch;
+  margin: 0;
+  font-size: max(16px, 4.6cqw);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+@media (max-width: 699px) {
+  .cover__float--cg {
+    left: -2%;
+    top: 9%;
+    scale: 0.7;
+    transform-origin: left center;
+  }
+
+  .cover__float--cy {
+    right: -2%;
+    bottom: 15%;
+    scale: 0.56;
+  }
+
+  .cover__float {
+    padding: 5px 10px 5px 5px;
+    gap: 6px;
+    border-radius: 10px;
+  }
+
+  .cover__float--tf {
+    left: -1%;
+    bottom: 3%;
+  }
+
+  .cover__float--tf b {
+    font-size: 11.5px;
+  }
+
+  .cover__float--tf small {
+    font-size: 10.5px;
+  }
+
+  .cover__float--tf .tf-avatar {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover__phone,
+  .cover--cy .cy-cover__win {
+    animation: none;
+    transition: none;
+  }
+
+  .cover__layer,
+  .cover__float {
+    transition: none;
+  }
+
+  .cover__soon-dot {
+    animation: none;
+  }
+
+  .cover--cg .cover__layer[data-id='win'].is-on .cg-win__cogni,
+  .cover--cg .cover__layer[data-id='win'].is-on .cg-win__wins .cg-slot:nth-child(2),
+  .cover--cg .cover__layer[data-id='win'].is-on .cg-win__wins .cg-slot:nth-child(2) svg {
+    animation: none;
+  }
+}

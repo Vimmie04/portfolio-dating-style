@@ -1,0 +1,342 @@
+.profile-card {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  margin-inline: auto;
+}
+
+.profile-card__frame {
+  position: relative;
+}
+
+/* Two cards peeking out behind the profile: there's a deck to swipe through */
+.profile-card__ghost {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-card);
+}
+
+.profile-card__ghost--a {
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  transform: rotate(-4deg) translate(-10px, 6px);
+}
+
+.profile-card__ghost--b {
+  background: var(--electric-tint);
+  transform: rotate(3deg) translate(10px, 4px);
+}
+
+.profile-card__card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--r-card);
+  background: var(--photo);
+  box-shadow: var(--shadow-card);
+}
+
+.profile-card__slide {
+  position: absolute;
+  inset: 0;
+}
+
+.profile-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  user-select: none;
+}
+
+/* Photo progress bars (also buttons) */
+.profile-card__bars {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 2px;
+  z-index: 4;
+  display: grid;
+  gap: 5px;
+}
+
+.profile-card__bar {
+  padding: 9px 0;
+  border: 0;
+  background: none;
+}
+
+.profile-card__bar span {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(15, 15, 18, 0.16);
+  transition: background 0.2s;
+}
+
+.profile-card__bar.is-active span {
+  background: var(--ink);
+}
+
+/* Tinder-style tap halves */
+.profile-card__tap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 50%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.profile-card__tap--prev {
+  left: 0;
+}
+
+.profile-card__tap--next {
+  right: 0;
+}
+
+.profile-card__tap:focus-visible {
+  outline-offset: -6px;
+}
+
+.profile-card__status {
+  position: absolute;
+  left: 14px;
+  top: 30px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(15, 15, 18, 0.08);
+  font-size: 12px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.name-tag {
+  position: absolute;
+  left: 7%;
+  top: 25%;
+  z-index: 3;
+  padding: 3px 9px;
+  border: 1.5px solid var(--electric);
+  background: rgba(31, 68, 255, 0.08);
+  font-size: 16px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.name-tag__h {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--electric);
+  background: #fff;
+}
+
+.name-tag__h--tl {
+  left: -5px;
+  top: -5px;
+}
+
+.name-tag__h--tr {
+  right: -5px;
+  top: -5px;
+}
+
+.name-tag__h--bl {
+  left: -5px;
+  bottom: -5px;
+}
+
+.name-tag__h--br {
+  right: -5px;
+  bottom: -5px;
+}
+
+/* LIKED / NOPE stamps */
+.stamp {
+  position: absolute;
+  top: 64px;
+  z-index: 5;
+  padding: 8px 12px 6px;
+  border: 3px solid currentColor;
+  background: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-pixel);
+  font-size: 26px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.stamp--like {
+  left: 18px;
+  color: var(--electric);
+}
+
+.stamp--nope {
+  right: 18px;
+  color: var(--ink);
+}
+
+/* Pass / like row, half over the card's bottom edge */
+.profile-card__actions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -32px;
+  z-index: 6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.pass-btn {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink-2);
+  box-shadow: var(--shadow-float);
+  transition: border-color 0.2s;
+}
+
+.pass-btn:hover {
+  border-color: var(--ink);
+}
+
+.profile-card__hint {
+  position: absolute;
+  left: calc(50% + 80px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 6px 11px;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--electric);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.profile-card__hint.is-liked {
+  color: var(--ink);
+}
+
+/* Two truths and a lie */
+.truths {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 40px 18px 50px;
+  overflow-y: auto;
+  background: var(--photo);
+}
+
+.truths__q {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.truths__hint {
+  min-height: 2.4em;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.truths__list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.truths__opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.truths__opt:hover:not(:disabled) {
+  border-color: var(--electric);
+}
+
+.truths__opt:disabled {
+  cursor: default;
+  color: var(--ink);
+}
+
+.truths__opt.is-lie {
+  border-color: var(--electric);
+  background: var(--electric-tint);
+}
+
+.truths__opt.is-lie .truths__text {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.truths__opt.is-picked {
+  box-shadow: 0 0 0 2px var(--ink);
+}
+
+.truths__tag {
+  flex: none;
+  padding: 3px 5px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.truths__tag--lie {
+  background: var(--electric);
+}
+
+.truths__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.truths__again {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 600;
+}

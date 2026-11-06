@@ -1,0 +1,69 @@
+.like-btn {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--size, 44px);
+  height: var(--size, 44px);
+  padding: 0;
+  border-radius: 50%;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.like-btn svg {
+  width: 46%;
+  height: 46%;
+}
+
+.like-btn--outline {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--electric);
+  box-shadow: var(--shadow-float);
+}
+
+.like-btn--outline:hover {
+  border-color: var(--electric);
+}
+
+.like-btn--outline.is-liked {
+  border-color: var(--electric);
+  background: var(--electric);
+  color: #fff;
+}
+
+.like-btn--solid {
+  border: 0;
+  background: var(--electric);
+  color: #fff;
+  box-shadow: var(--shadow-like);
+}
+
+.like-btn--solid:hover {
+  background: var(--electric-ink);
+}
+
+.like-btn--solid.is-liked {
+  background: var(--ink);
+  box-shadow: 0 10px 24px rgba(15, 15, 18, 0.28);
+}
+
+.heart-burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.heart-burst__p {
+  position: absolute;
+  width: 14px;
+  height: 12px;
+  margin: -6px 0 0 -7px;
+  background: var(--pixel-heart) center / contain no-repeat;
+  image-rendering: pixelated;
+  opacity: 0;
+  animation: pixel-burst 560ms steps(7, end) forwards;
+}

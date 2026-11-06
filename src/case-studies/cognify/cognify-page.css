@@ -1,0 +1,1002 @@
+/* ─────────────────────────────────────────────────────────────
+   Cognify case study page. Portfolio styles for the story;
+   Cognify's own indigo family only on its stages and phones.
+   ───────────────────────────────────────────────────────────── */
+.cgp-logo {
+  display: block;
+  width: 132px;
+  height: auto;
+}
+
+/* Cover: the shared three-phone fan, calmer (smaller tilt) and in Cognify's hues */
+.cgp-cover {
+  --tf-ink: #111111;
+  --tf-muted: #666666;
+  --tf-body: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  background: #eef0ff;
+}
+
+.cgp-cover .cs-cover__disc {
+  background: #dfe2ff;
+}
+
+.cgp-cover .cs-cover__ring {
+  box-shadow: inset 0 0 0 1px rgba(90, 98, 232, 0.18);
+}
+
+.cgp-cover .cs-cover__phone--l {
+  transform: translate(calc(-50% - var(--off)), -46%) rotateY(18deg);
+}
+
+.cgp-cover .cs-cover__phone--r {
+  transform: translate(calc(-50% + var(--off)), -46%) rotateY(-18deg);
+}
+
+.cgp-cover .cs-cover__float b {
+  font-family: 'Lexend', system-ui, sans-serif;
+  font-weight: 600;
+}
+
+.cgp-float__cogni,
+.cgp-float__spark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #eef0ff;
+}
+
+.cgp-float__spark {
+  border-radius: 50%;
+  background: #fff7e0;
+}
+
+/* ── Hero animation: one phone, the core loop ─────────────── */
+.cgp-anim {
+  --w: min(268px, 50cqw);
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 22px;
+  min-height: calc(var(--w) * 2.097 + 150px);
+  padding: 30px 16px;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 22px;
+  background: #eef0ff;
+}
+
+.cgp-anim .cs-cover__disc {
+  background: #dfe2ff;
+  transform: translate(-50%, -54%);
+}
+
+.cgp-anim .cs-cover__ring {
+  box-shadow: inset 0 0 0 1px rgba(90, 98, 232, 0.18);
+  transform: translate(-50%, -54%);
+}
+
+.cgp-anim__phone {
+  position: relative;
+  z-index: 1;
+}
+
+/* The four screens are stacked; the current one fades and settles in */
+.cgp-flow {
+  position: relative;
+  width: 390px;
+  height: 844px;
+}
+
+.cgp-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition:
+    opacity 0.45s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cgp-layer--step {
+  transform: translateX(46px);
+}
+
+.cgp-layer--win {
+  transform: scale(0.96);
+}
+
+.cgp-layer.is-on {
+  z-index: 2;
+  opacity: 1;
+  transform: none;
+}
+
+.cgp-layer.is-prev {
+  z-index: 1;
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* Small win: Cogni pops up and the second win fills gold */
+.cgp-layer--win.is-on .cg-win__cogni {
+  animation: cgp-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+}
+
+.cgp-layer--win.is-on .cg-win__wins .cg-slot:nth-child(2) {
+  animation: cgp-fill 0.4s ease 0.55s both;
+}
+
+.cgp-layer--win.is-on .cg-win__wins .cg-slot:nth-child(2) svg {
+  animation: cgp-tick 0.3s ease 0.8s both;
+}
+
+@keyframes cgp-pop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 18px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@keyframes cgp-fill {
+  from {
+    border-color: #5a62e8;
+    background: #fff;
+  }
+  to {
+    border-color: #111;
+    background: #dfb34b;
+  }
+}
+
+@keyframes cgp-tick {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* A finger tap: a soft ring that grows and fades */
+.cgp-tap {
+  position: absolute;
+  z-index: 5;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: rgba(17, 17, 17, 0.22);
+  animation: cgp-tap 0.45s ease-out both;
+  pointer-events: none;
+}
+
+@keyframes cgp-tap {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  35% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.25);
+  }
+}
+
+/* The story under the phone: which part of the loop is playing */
+.cgp-anim__stages {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cgp-anim__stages li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #4a4a50;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.cgp-anim__stages span {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #dfe2ff;
+  color: #3d44c7;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.cgp-anim__stages li.is-on {
+  background: #fff;
+  color: #111;
+  box-shadow: 0 6px 18px rgba(61, 68, 199, 0.16);
+}
+
+.cgp-anim__stages li.is-on span {
+  background: #5a62e8;
+  color: #fff;
+}
+
+/* ── 01 · Overview: who it's for ──────────────────────────── */
+.cgp-segment {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 28px;
+  margin-top: 16px;
+  padding: 24px 26px;
+}
+
+.cgp-segment__chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cgp-segment__chain li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.cgp-segment__chain li:not(:last-child)::after {
+  content: '→';
+  color: var(--muted-2);
+}
+
+.cgp-segment__chain li.is-focus {
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  background: #eef0ff;
+  color: #3d44c7;
+}
+
+.cgp-segment__age {
+  margin-top: 14px;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.cgp-segment__age b {
+  color: var(--ink);
+}
+
+.cgp-effects {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cgp-effects li {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--canvas);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ── 02 · Research ─────────────────────────────────────────── */
+.cgp-desk {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 28px;
+  margin-top: 16px;
+  padding: 26px;
+}
+
+.cgp-desk__side {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.cgp-desk__side .cs-mini {
+  margin-bottom: 8px;
+}
+
+.cgp-source {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.cgp-sub {
+  margin: 40px 0 14px;
+}
+
+.cgp-experts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cgp-expert {
+  overflow: hidden;
+  margin: 0;
+}
+
+.cgp-expert img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.cgp-expert figcaption {
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px 18px;
+}
+
+.cgp-expert b {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.cgp-expert span {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.cgp-kind {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  font-weight: 600;
+}
+
+.cgp-kind--expert {
+  background: var(--canvas);
+  color: var(--ink-2);
+}
+
+.cgp-kind--user {
+  background: #eef0ff;
+  color: #3d44c7;
+}
+
+.cgp-users {
+  margin-top: 16px;
+}
+
+.cgp-users .cs-interviews__count {
+  align-content: start;
+  background: #5a62e8;
+}
+
+.cgp-counts {
+  display: grid;
+  gap: 18px;
+}
+
+.cgp-counts p {
+  display: grid;
+  gap: 4px;
+  max-width: 24ch;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.cgp-themes__title {
+  margin-bottom: 10px;
+}
+
+.cgp-themes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cgp-theme {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 22px;
+}
+
+.cgp-theme__n {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-2);
+}
+
+.cgp-theme h4 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.cgp-theme p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+@media (max-width: 999px) {
+  .cgp-experts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cgp-expert {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .cgp-expert img {
+    height: 100%;
+  }
+}
+
+@media (max-width: 799px) {
+  .cgp-segment,
+  .cgp-desk {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cgp-themes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 559px) {
+  .cgp-expert {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── 03 · The problem ──────────────────────────────────────── */
+.cgp-statement {
+  padding: 28px 30px;
+}
+
+.cgp-statement blockquote {
+  max-width: 40ch;
+  margin: 12px 0 0;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cgp-gaps__title {
+  margin: 24px 0 10px;
+}
+
+.cgp-gaps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cgp-hmw {
+  margin-top: 16px;
+  background: #1f2366;
+}
+
+
+@media (max-width: 799px) {
+  .cgp-gaps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── 04 · How it helps ─────────────────────────────────────── */
+.cgp-pillars {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cgp-pillars .cgp-pillar {
+  grid-column: span 2;
+}
+
+.cgp-pillars .cgp-pillar:nth-child(n + 4) {
+  grid-column: span 3;
+}
+
+.cgp-pillar {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 24px;
+}
+
+.cgp-pillar__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 6px;
+  border-radius: 14px;
+  background: #eef0ff;
+  color: #5a62e8;
+}
+
+.cgp-pillar__text {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.cgp-pillar__where {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3d44c7;
+}
+
+.cgp-sub__lede {
+  margin: -6px 0 16px;
+}
+
+.cgp-places {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cgp-places li {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 18px 16px;
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-2);
+}
+
+.cgp-places b {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cgp-places li > span:last-child {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.cgp-places__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: #eef0ff;
+  color: #5a62e8;
+}
+
+.cgp-places li.is-cogni .cgp-places__icon {
+  border-radius: 50%;
+  background: #5a62e8;
+  color: #fff;
+}
+
+/* Tables: the gamification comparison and the accessibility mapping */
+.cgp-table {
+  overflow: hidden;
+}
+
+.cgp-table__row {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 24px;
+  align-items: start;
+  padding: 16px 24px;
+  border-top: 1px solid var(--line-2);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.cgp-table--map .cgp-table__row {
+  grid-template-columns: 150px minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 1.3fr);
+}
+
+.cgp-table__row--head {
+  border-top: 0;
+  padding-block: 14px 10px;
+  background: var(--canvas);
+}
+
+.cgp-table__k {
+  font-weight: 600;
+}
+
+.cgp-table__usual {
+  color: var(--muted);
+}
+
+.cgp-table__principle {
+  font-weight: 500;
+  color: #3d44c7;
+}
+
+.cgp-table__ours {
+  font-weight: 500;
+}
+
+/* Voice and tone */
+.cgp-voice {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.cgp-voice__pairs {
+  display: grid;
+  padding: 8px 24px;
+}
+
+.cgp-voice__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line-2);
+}
+
+.cgp-voice__pair:first-child {
+  border-top: 0;
+}
+
+.cgp-voice__say,
+.cgp-voice__not {
+  display: grid;
+  gap: 6px;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.cgp-voice__say {
+  font-weight: 600;
+}
+
+.cgp-voice__not {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(15, 15, 18, 0.35);
+}
+
+.cgp-voice__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  justify-self: start;
+  padding: 2px 8px 2px 6px;
+  border-radius: var(--r-pill);
+  background: var(--canvas);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cgp-voice__tag--yes {
+  background: #eef0ff;
+  color: #3d44c7;
+}
+
+.cgp-voice__rules {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 16px;
+  padding: 24px;
+  background: #eef0ff;
+}
+
+.cgp-voice__rules ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ── 05 · Screens ──────────────────────────────────────────── */
+.cgp-flow__letter {
+  background: #5a62e8;
+}
+
+.cgp-stage {
+  --cs-stage: #eef0ff;
+  --cs-stage-dot: rgba(90, 98, 232, 0.14);
+}
+
+/* ── 06 · Prototype: the same dark stage, in Cognify's indigo ── */
+.cgp-proto .cs-proto__hint {
+  background: rgba(124, 131, 253, 0.22);
+}
+
+.cgp-proto .cs-proto__hint svg {
+  color: #c7cbff;
+}
+
+/* ── 07 · Design system ────────────────────────────────────── */
+.cgp-brand {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 24px;
+}
+
+.cgp-brand__logo {
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+  border-radius: 16px;
+  background: #fafaf8;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.cgp-brand__logo img {
+  width: min(264px, 80%);
+  height: auto;
+}
+
+.cgp-swatches {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.cgp-type__aa {
+  color: #5a62e8;
+}
+
+.cgp-type__why {
+  grid-column: 2;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.cgp-kit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.cgp-kit__card {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 24px;
+}
+
+.cgp-kit__text {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.cgp-moods {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cgp-moods li {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.cgp-moods__stage {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  margin-bottom: 8px;
+  border-radius: 18px;
+  background: #eef0ff;
+}
+
+.cgp-moods b {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.cgp-moods li > span:last-child {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cgp-icons {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cgp-icons li {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: #fafaf8;
+  color: #5a62e8;
+}
+
+.cgp-icons__gold {
+  background: #fff7e0 !important;
+}
+
+/* ── 08 · Accessibility, 09 · Success ──────────────────────── */
+.cgp-checks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.cgp-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 1099px) {
+  .cgp-places {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cgp-checks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 999px) {
+  .cgp-table--map .cgp-table__row {
+    grid-template-columns: 140px minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .cgp-table--map .cgp-table__usual {
+    display: none;
+  }
+
+  .cgp-voice {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 799px) {
+  .cgp-pillars,
+  .cgp-metrics,
+  .cgp-kit,
+  .cgp-brand {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cgp-pillars .cgp-pillar,
+  .cgp-pillars .cgp-pillar:nth-child(n + 4) {
+    grid-column: auto;
+  }
+
+  .cgp-places {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cgp-swatches {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Tables become stacked cards, each cell labelled */
+  .cgp-table__row,
+  .cgp-table--map .cgp-table__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    padding: 16px 18px;
+  }
+
+  .cgp-table__row--head {
+    display: none;
+  }
+
+  .cgp-table__row:nth-child(2) {
+    border-top: 0;
+  }
+
+  .cgp-table--map .cgp-table__usual {
+    display: block;
+  }
+
+  .cgp-table__row [data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  .cgp-voice__pair {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (max-width: 499px) {
+  .cgp-checks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cgp-icons {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Phones: only the playing stage keeps its words; the others shrink to their number */
+@container (max-width: 460px) {
+  .cgp-anim__stages {
+    flex-wrap: nowrap;
+  }
+
+  .cgp-anim__stages li:not(.is-on) {
+    gap: 0;
+    padding: 4px;
+    font-size: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cgp-layer,
+  .cgp-anim__stages li {
+    transition: none;
+  }
+}

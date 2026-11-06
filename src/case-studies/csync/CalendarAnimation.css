@@ -1,0 +1,186 @@
+/* ─────────────────────────────────────────────────────────────
+   The animated CS Calendar on flat CSync violet. Used by the case-study
+   hero and the homepage cover, so it carries its own styles.
+   ───────────────────────────────────────────────────────────── */
+.cy-cover {
+  position: relative;
+  aspect-ratio: 1.32;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 22px;
+  background: #efecfd;
+}
+
+.cy-cover__disc,
+.cy-cover__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -48%);
+  pointer-events: none;
+}
+
+.cy-cover__disc {
+  width: 84cqw;
+  background: #e4dffb;
+}
+
+.cy-cover__ring {
+  width: 122cqw;
+  box-shadow: inset 0 0 0 1px rgba(96, 65, 232, 0.16);
+}
+
+.cy-cover__win {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 92%;
+  transform: translate(-50%, -50%);
+}
+
+/*
+ * Camera: zooms the whole stage in on Wed–Sat + the Deadlines panel
+ * (canvas x 632–1510, y 70–736). With the window at 92% of the stage and a 24px
+ * browser bar, that is scale 1.9 and this translate, at any stage width.
+ */
+.cy-camera {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  transition: transform 0.85s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.cy-anim[data-zoom] .cy-camera {
+  transform: scale(1.9) translate(-41.86%, calc(-26.44% - 12px));
+}
+
+.cy-cover .cx-window {
+  border-color: rgba(64, 40, 160, 0.1);
+  box-shadow: 0 1px 2px rgba(30, 20, 80, 0.06), 0 30px 60px -20px rgba(40, 24, 120, 0.34);
+}
+
+/* ── The animation (states come from CalendarAnimation.jsx) ── */
+.cy-anim .cx-day li,
+.cy-anim .cx-day__more {
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 30ms);
+}
+
+.cy-anim:not([data-events]) .cx-day li,
+.cy-anim:not([data-events]) .cx-day__more {
+  opacity: 0;
+  transform: translateY(6px) scale(0.96);
+}
+
+.cy-anim .cx-day--sel {
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.cy-anim .cx-day--sel .cx-day__num,
+.cy-anim .cx-dead__head small {
+  transition:
+    color 0.25s ease,
+    opacity 0.3s ease;
+}
+
+.cy-anim:not([data-sel]) .cx-day--sel {
+  border-color: #eef0f3;
+  background: #fff;
+}
+
+.cy-anim:not([data-sel]) .cx-day--sel .cx-day__num {
+  color: #374151;
+}
+
+.cy-anim:not([data-sel]) .cx-dead__head small {
+  opacity: 0;
+}
+
+.cy-anim .cx-dead__item {
+  transition:
+    opacity 0.35s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.cy-anim:not([data-dead]) .cx-dead__item {
+  opacity: 0;
+  transform: translateX(16px);
+}
+
+.cy-anim .cx-due {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.cy-anim[data-hover] .cx-dead__item:first-child .cx-due {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(40, 24, 120, 0.14);
+}
+
+/* Cursor and click, drawn in the screen's own 1536 × 736 coordinates */
+.cy-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 34px;
+  height: 34px;
+  opacity: 0;
+  transform: translate(1463px, 776px);
+  transition:
+    transform 0.6s cubic-bezier(0.45, 0, 0.2, 1),
+    opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.cy-cursor__arrow {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
+}
+
+.cy-anim[data-cursor] .cy-cursor {
+  opacity: 1;
+}
+
+.cy-anim[data-cursor='day'] .cy-cursor {
+  transform: translate(1065px, 653px);
+}
+
+.cy-anim[data-cursor='card'] .cy-cursor {
+  transform: translate(1323px, 293px);
+}
+
+.cy-ripple {
+  position: absolute;
+  left: 1040px;
+  top: 625px;
+  z-index: 9;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(80, 70, 229, 0.3);
+  animation: cy-ripple 0.45s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes cy-ripple {
+  from {
+    opacity: 0.9;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}

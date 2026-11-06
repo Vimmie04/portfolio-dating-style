@@ -1,0 +1,32 @@
+.prompt-card {
+  position: relative;
+  padding: 18px 20px 26px;
+  border-radius: var(--r-prompt);
+  background: var(--surface);
+  box-shadow: var(--shadow-2);
+}
+
+.prompt-card__q {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.prompt-card__a {
+  padding-right: 34px;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.prompt-card--sm .prompt-card__a {
+  font-size: 18px;
+}
+
+.prompt-card__like {
+  position: absolute;
+  right: 14px;
+  bottom: -16px;
+}

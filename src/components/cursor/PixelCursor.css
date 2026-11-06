@@ -1,0 +1,134 @@
+/* Native cursor is hidden only while the pixel cursor is active (fine pointer). */
+html.pixel-cursor-on,
+html.pixel-cursor-on * {
+  cursor: none !important;
+}
+
+.pixel-cursor-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.pixel-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  will-change: transform;
+  transition: opacity 0.15s;
+}
+
+.pixel-cursor[data-visible] {
+  opacity: 1;
+}
+
+/* The cursor box is 0×0, so opt out of the global `svg { max-width: 100% }`. */
+.pixel-cursor svg {
+  max-width: none;
+}
+
+.pixel-cursor__sprite {
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: drop-shadow(1px 1px 0 rgba(15, 15, 18, 0.16));
+  transition: scale 0.08s steps(2, end);
+}
+
+/* Little bounce whenever the sprite changes (e.g. arrow → hand). */
+.pixel-cursor--hand .pixel-cursor__sprite,
+.pixel-cursor--left .pixel-cursor__sprite,
+.pixel-cursor--right .pixel-cursor__sprite {
+  animation: pixel-bounce 280ms steps(4, end);
+}
+
+.pixel-cursor[data-pressed] .pixel-cursor__sprite {
+  scale: 0.86;
+}
+
+.pixel-cursor__badge {
+  position: absolute;
+  left: 22px;
+  top: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 6px 3px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 var(--electric);
+  animation: badge-in 160ms steps(3, end);
+}
+
+.pixel-cursor__trail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 4px;
+  margin: 10px 0 0 4px;
+  background: var(--electric);
+  opacity: 0;
+}
+
+.pixel-cursor__bursts {
+  position: absolute;
+  inset: 0;
+}
+
+.pixel-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  background: var(--electric);
+  animation: pixel-burst 440ms steps(6, end) forwards;
+}
+
+.pixel-particle--ink {
+  background: var(--ink);
+}
+
+.pixel-particle--heart {
+  width: 14px;
+  height: 12px;
+  margin: -6px 0 0 -7px;
+  background: var(--pixel-heart) center / contain no-repeat;
+  image-rendering: pixelated;
+}
+
+@keyframes pixel-bounce {
+  0% {
+    translate: 0 0;
+  }
+  40% {
+    translate: 0 -3px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes badge-in {
+  from {
+    opacity: 0;
+    translate: -4px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-cursor__sprite,
+  .pixel-cursor__badge {
+    animation: none !important;
+  }
+}

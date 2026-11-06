@@ -1,0 +1,109 @@
+/* Browser window around a shipped CSync screen + the ownership caption */
+.cx-shot {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+}
+
+.cx-window {
+  overflow: hidden;
+  border: 1px solid #e3e6eb;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 18px 40px -12px rgba(16, 24, 40, 0.14);
+}
+
+.cx-window__bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 14px;
+  border-bottom: 1px solid #eceff3;
+  background: #f7f8fa;
+}
+
+.cx-window__dots {
+  display: flex;
+  gap: 7px;
+}
+
+.cx-window__dots i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #dcdfe4;
+}
+
+.cx-window__url {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 34%;
+  padding: 4px 14px;
+  border-radius: 8px;
+  background: #eceef2;
+  color: #6b7280;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.cx-window__view {
+  position: relative;
+  overflow: hidden;
+}
+
+.cx-window__canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1536px;
+  height: 736px;
+  transform-origin: 0 0;
+}
+
+/* Smaller chrome for covers, where the window itself is small */
+.cx-window--compact {
+  border-radius: 10px;
+}
+
+.cx-window--compact .cx-window__bar {
+  height: 24px;
+  padding: 0 10px;
+}
+
+.cx-window--compact .cx-window__dots {
+  gap: 5px;
+}
+
+.cx-window--compact .cx-window__dots i {
+  width: 7px;
+  height: 7px;
+}
+
+.cx-window--compact .cx-window__url {
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 9.5px;
+  line-height: 12px;
+}
+
+.cx-shot figcaption {
+  display: grid;
+  gap: 4px;
+  padding: 0 2px;
+}
+
+.cx-shot figcaption b {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cx-shot figcaption small {
+  max-width: 72ch;
+  color: var(--muted, #6b7280);
+  font-size: 13px;
+  line-height: 1.5;
+}

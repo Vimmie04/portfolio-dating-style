@@ -1,0 +1,59 @@
+/* Design tokens — Direction B "App Native" */
+:root {
+  /* Colour */
+  --canvas: #f2f2ef;
+  --surface: #ffffff;
+  --photo: #f8f8f8; /* exact backdrop of the portrait */
+  --ink: #0f0f12;
+  --ink-2: #3b3b40;
+  --muted: #4a4a50;
+  --muted-2: #5d5d63;
+  --line: #e2e2de;
+  --line-2: #ececE8;
+  --line-strong: #d4d4cf;
+  --chip: #e7e7e3;
+  --electric: #1f44ff;
+  --electric-ink: #1633d6;
+  --electric-soft: #afc0ff;
+  --electric-tint: #e6e9ff;
+  --online: #17b26a;
+  --ink-tab: #24242a;
+  --on-ink-muted: #b4b4bb;
+
+  /* Type */
+  --font-sans: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-pixel: 'Silkscreen', var(--font-mono);
+
+  /* Shape */
+  --r-card: 26px;
+  --r-prompt: 18px;
+  --r-sm: 12px;
+  --r-pill: 999px;
+
+  /* Depth */
+  --shadow-1: 0 1px 2px rgba(15, 15, 18, 0.06);
+  --shadow-2: 0 1px 2px rgba(15, 15, 18, 0.06), 0 12px 28px rgba(15, 15, 18, 0.06);
+  --shadow-card: 0 1px 2px rgba(15, 15, 18, 0.06), 0 24px 56px rgba(15, 15, 18, 0.12);
+  --shadow-float: 0 6px 16px rgba(15, 15, 18, 0.1);
+  --shadow-like: 0 10px 24px rgba(31, 68, 255, 0.32);
+  --shadow-pop: 0 12px 32px rgba(15, 15, 18, 0.22);
+
+  /* Layout */
+  --container: 1360px;
+  --gutter: 40px;
+  --header-h: 76px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Pixel heart, used by bursts and toasts */
+  --pixel-heart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 6' shape-rendering='crispEdges'%3E%3Cpath fill='%231F44FF' d='M1 0h2v1H1zM4 0h2v1H4zM0 1h7v2H0zM1 3h5v1H1zM2 4h3v1H2zM3 5h1v1H3z'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 699px) {
+  :root {
+    --gutter: 16px;
+    --header-h: 64px;
+  }
+}

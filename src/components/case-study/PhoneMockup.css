@@ -1,0 +1,118 @@
+/* Realistic phone mockup. The 414 × 868 device scales to --phone-w. */
+.phone {
+  position: relative;
+  flex: none;
+  width: var(--phone-w, 280px);
+  max-width: 100%;
+  aspect-ratio: 414 / 868;
+}
+
+.phone__scaler {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 414px;
+  height: 868px;
+  transform-origin: 0 0;
+}
+
+/* Brushed titanium rim → black bezel → screen */
+.phone__body {
+  position: relative;
+  width: 414px;
+  height: 868px;
+  padding: 4px;
+  border-radius: 68px;
+  background: linear-gradient(145deg, #c9ccd2 0%, #7d8189 16%, #3a3d44 42%, #6c7078 74%, #d3d6db 100%);
+  /* Box-shadow (not filter: drop-shadow) so a page full of phones stays cheap to paint */
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45), 0 48px 64px rgba(12, 32, 56, 0.2), 0 14px 22px rgba(12, 32, 56, 0.12);
+}
+
+.phone__bezel {
+  width: 406px;
+  height: 860px;
+  padding: 8px;
+  border-radius: 64px;
+  background: #050507;
+  box-shadow: inset 0 0 0 1px #24262b;
+}
+
+.phone--midnight .phone__body {
+  background: linear-gradient(145deg, #4a4f58 0%, #22252b 30%, #121418 60%, #3a3e46 100%);
+}
+
+.phone__btn {
+  position: absolute;
+  width: 5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #4b4f57, #8c9098);
+}
+
+.phone__btn--action {
+  left: -3px;
+  top: 150px;
+  height: 34px;
+}
+
+.phone__btn--up {
+  left: -3px;
+  top: 212px;
+  height: 62px;
+}
+
+.phone__btn--down {
+  left: -3px;
+  top: 290px;
+  height: 62px;
+}
+
+.phone__btn--power {
+  right: -3px;
+  top: 248px;
+  height: 98px;
+  background: linear-gradient(270deg, #4b4f57, #8c9098);
+}
+
+.phone__screen {
+  position: relative;
+  width: 390px;
+  height: 844px;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 56px;
+  background: #fff;
+}
+
+.phone__island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  z-index: 90;
+  width: 124px;
+  height: 36px;
+  margin-left: -62px;
+  border-radius: 20px;
+  background: #000;
+  pointer-events: none;
+}
+
+.phone__indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  z-index: 90;
+  width: 136px;
+  height: 5px;
+  margin-left: -68px;
+  border-radius: 3px;
+  background: #111;
+  pointer-events: none;
+}
+
+.phone__glare {
+  position: absolute;
+  inset: 0;
+  z-index: 95;
+  background: linear-gradient(118deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 32%);
+  pointer-events: none;
+}

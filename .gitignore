@@ -1,0 +1,9 @@
+node_modules
+dist
+.DS_Store
+
+# Kept on this PC only, never pushed:
+# reference screenshots (CSync's are under NDA) and Behance downloads
+design-ref/
+# generated Behance, Figma and cover images (rebuild with npm run export:*)
+exports/
